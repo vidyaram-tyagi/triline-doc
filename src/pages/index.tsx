@@ -42,14 +42,47 @@
 //     </Layout>
 //   );
 // }
-
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "@theme/Layout";
 import Heading from "@theme/Heading";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
+import users from "../../data/users.json";
+import { useHistory } from "@docusaurus/router";
+import { getSession, login, logout } from "../utils/session";
+
 export default function Home() {
   const { siteConfig } = useDocusaurusContext();
+  const [session, setSession] = useState(null);
+  const [showLogin, setShowLogin] = useState(false);
+  const [mobile, setMobile] = useState("");
+  const [error, setError] = useState("");
+  const history = useHistory();
+
+  useEffect(() => {
+    setSession(getSession());
+  }, []);
+
+  const submit = () => {
+    const user = users[mobile];
+
+    if (!user) {
+      setError("Access denied");
+      return;
+    }
+
+    login(user);
+    setSession({ name: user.name, role: user.role });
+    setShowLogin(false);
+    history.push(`/triline-doc/docs/${user.role}/project-guide`);
+  };
+
+  const doLogout = () => {
+    logout();
+    setSession(null);
+    setMobile("");
+    setShowLogin(false);
+  };  
 
   return (
     <Layout
@@ -65,10 +98,59 @@ export default function Home() {
         </div>
       </header>
 
-      <main style={{ padding: "3rem", textAlign: "center" }}>
+    <div style={{ marginTop: 120, textAlign: "center" }}>
+      {!session ? (
+        <>
+          <h2>Welcome to Documentation</h2>
+
+          {!showLogin ? (
+            <button onClick={() => setShowLogin(true)}>
+              Login
+            </button>
+          ) : (
+            <>
+              <h3>Enter Mobile Number</h3>
+
+              <input
+                placeholder="Mobile number"
+                value={mobile}
+                onChange={(e) => setMobile(e.target.value)}
+              />
+
+              <br /><br />
+
+              <button onClick={submit}>Continue</button>
+              <button
+                style={{ marginLeft: 10 }}
+                onClick={() => setShowLogin(false)}
+              >
+                Cancel
+              </button>
+
+              {error && <p style={{ color: "red" }}>{error}</p>}
+            </>
+          )}
+        </>
+      ) : (
+        <>
+          <h2>Welcome, {session.name} 👋</h2>
+          <p>You are logged in as <b>{session.role}</b></p>
+
+          <button onClick={() => history.push(`/triline-doc/docs/${session.role}/project-guide`)}>
+            Go to Docs
+          </button>
+
+          <br /><br />
+
+          <button onClick={doLogout}>Logout</button>
+        </>
+      )}
+    </div>
+
+      {/* <main style={{ padding: "3rem", textAlign: "center" }}>
         <h2>Welcome to Documentation Portal</h2>
         <p>Please login using the top menu to access your docs.</p>
-      </main>
+      </main> */}
     </Layout>
   );
 }

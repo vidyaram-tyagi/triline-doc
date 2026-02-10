@@ -1,0 +1,16 @@
+/* .navbarItems {
+  display: flex;
+  align-items: center;
+}
+
+.navbarItemsRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+} */
+.navbarUser {
+  margin-left: 12px;
+}
+.navbar__item {
+  margin-right: 12px;
+}

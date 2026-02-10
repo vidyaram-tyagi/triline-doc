@@ -104,12 +104,13 @@ const config: Config = {
           position: 'left',
           label: 'QA process',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
-        {
-          href: 'https://github.com/vidyaram-tyagi/triline-doc',
-          label: 'GitHub',
-          position: 'right',
-        },
+        {to: '/blog', label: 'Blog', position: 'left'}
+
+        // {
+        //   href: 'https://github.com/vidyaram-tyagi/triline-doc',
+        //   label: 'GitHub',
+        //   position: 'right',
+        // },
       ],
     },
     footer: {
