@@ -80,6 +80,30 @@ const config: Config = {
           position: 'left',
           label: 'Docs',
         },
+        {
+          type: 'docSidebar',
+          sidebarId: 'keypointsSidebar',
+          position: 'left',
+          label: 'Process',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'spiderSidebar',
+          position: 'left',
+          label: 'Spider',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'ylacdcpSidebar',
+          position: 'left',
+          label: 'YLAC-DCP',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'qaprocessSidebar',
+          position: 'left',
+          label: 'QA process',
+        },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/vidyaram-tyagi/triline-doc',
