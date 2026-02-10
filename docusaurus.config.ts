@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Triline Docs',
-  tagline: 'Official documentation',
+  title: 'Triline Infotech',
+  tagline: 'Documentation That Helps You Build, Use, and Succeed',
   favicon: 'img/favicon.ico',
 
   future: {
@@ -68,9 +68,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Triline Docs',
+      title: 'Triline Infotech',
       logo: {
-        alt: 'Triline Logo',
+        alt: 'Triline Infotech',
         src: 'img/logo.svg',
       },
       items: [
